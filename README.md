@@ -1,1 +1,12 @@
-# pokedex
+# Pokedex JS Project
+
+### Learning Outcomes 
+
+- How to get data from an API using Fetch API
+- Displaying the data through JS and CSS Flexbox 
+
+
+### Credits
+
+Project from Brad Traversy's Udemy course: https://github.com/bradtraversy/50projects50days/tree/master/pokedex
+
