@@ -3,7 +3,8 @@
 ### Learning Outcomes 
 
 - How to get data from an API using Fetch API
-- Displaying the data through JS and CSS Flexbox 
+- Displaying the data through JS, async await
+- CSS Flexbox 
 
 
 ### Credits
