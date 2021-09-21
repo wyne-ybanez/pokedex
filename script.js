@@ -1,5 +1,5 @@
-const poke_container = document.getElementById('pokemon-container')
-const pokemon_count = 150
+const poke_container = document.getElementById('poke-container')
+const pokemon_count = 300
 const colors = {
     fire: '#FDDFDF',
     grass: '#DEFDE0',
@@ -27,12 +27,43 @@ const getPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data)
-    // createPokemonCard(data)
+    createPokemonCard(data)
 }
 
 const createPokemonCard = (pokemon) => {
+    // index = type
 
+    const pokemonEl = document.createElement('div')
+    pokemonEl.classList.add('pokemon')
+
+    const id = pokemon.id.toString().padStart(3, '0') //Padded ID to 3 digits, zeros at start
+    const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1) //Starting letter uppercase
+    const poke_types = pokemon.types.map(t => t.type.name) //Creates a new array of the type names
+
+    const main_types = Object.keys(colors) //Provides an array with list of keys
+
+    const type = main_types.find(type => poke_types.indexOf(type) > -1) //Finds type according to criteria
+    
+    const color = colors[type]
+    pokemonEl.style.backgroundColor = color //Background color based on key value
+
+    const pokemonInnerHTML = `
+        <!-- Image -->
+        <div class="img-container">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" 
+            alt="${name}">
+        </div>
+
+        <!-- Info -->
+        <div class="info">
+            <span class="number">${id}</span>
+            <h3 class="name">${name}</h3>
+            <small class="type">Type: <span>${type}</span> </small>
+        </div>
+    `
+
+    pokemonEl.innerHTML = pokemonInnerHTML
+    poke_container.appendChild(pokemonEl)
 }
 
 fetchPokemons()
